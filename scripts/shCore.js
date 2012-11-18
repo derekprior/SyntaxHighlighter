@@ -350,14 +350,14 @@ var sh = {
 	 * Main entry point for the SyntaxHighlighter.
 	 * @param {Object} params Optional params to apply to all highlighted elements.
 	 */
-	all: function(params)
-	{
-		attachEvent(
-			window,
-			'load',
-			function() { sh.highlight(params); }
-		);
+	all : function (params) {
+    		if (this.readyState && (this.readyState !== "complete" || this.readyState !== "loaded")) {
+        		attachEvent(window,'load', function() { sh.highlight(params); });
+    		} else {
+        		sh.highlight(params);
+    		}
 	}
+}
 }; // end of sh
 
 /**
